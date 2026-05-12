@@ -2,19 +2,34 @@ import Gig from "../models/Gig.js";
 
 export const createGig = async (req, res) => {
   try {
+    const {
+      title,
+      category,
+      description,
+      packages,
+      images,
+      tags,
+    } = req.body;
+
     const gig = await Gig.create({
       userId: req.user.id, // from auth middleware
-      title: req.body.title,
-      category: req.body.category,
-      description: req.body.description,
-      packages: req.body.packages,
-      images: req.body.images,
-      tags: req.body.tags,
+      title,
+      category,
+      description,
+      packages,
+      images,
+      tags,
     });
 
-    res.status(201).json(gig);
+    res.status(201).json({
+      success: true,
+      gig,
+    });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({
+      success: false,
+      message: err.message,
+    });
   }
 };
 
