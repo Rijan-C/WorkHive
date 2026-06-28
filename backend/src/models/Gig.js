@@ -1,29 +1,16 @@
 import mongoose from "mongoose";
 
 const packageSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true, // e.g. "Basic", "Standard", "Premium"
-  },
+  title: String,
+  price: Number,
+  deliveryTime: Number,
+  shortDescription: String,
 
-  price: {
-    type: Number,
-    required: true,
+  features: {
+    type: [String],
+    default: [],
   },
-
-  deliveryTime: {
-    type: Number, // in days
-    required: true,
-  },
-
-  shortDescription: {
-    type: String,
-    required: true,
-    maxlength: 120,
-  }
-  
 });
-
 
 const gigSchema = new mongoose.Schema(
   {

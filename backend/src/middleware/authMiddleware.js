@@ -1,13 +1,13 @@
-import jswebtoken from 'jsonwebtoken';
-import User from '../models/users.js';
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
 // Middleware to protect routes
 
-export const authMiddleware = async (req, res, next) => {
+export const protect = async (req, res, next) => {
     try {
         let token;
         if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
-            token = req.headers.authorization.split(' ')[1];
+            token = req.headers.authorization.split(' ')[1];    
         }
 
         if (!token) {
